@@ -25,25 +25,6 @@ const Transcript = ({ analysisInfo }) => {
     setFilterResultData(originalResultData);
   }, [originalResultData]);
 
-  const handleEmailSend = async () => {
-    let response;
-
-    response = await fetch("http://localhost:5000/email", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ toEmail: email }),
-    });
-    let json = await response.json();
-    console.log(json);
-    setEmail("");
-  };
-
-  const handleEmailInput = (e) => {
-    setEmail(e.target.value);
-  };
-
   return (
     <Container minWidth="container.md">
       <VStack>
@@ -54,18 +35,12 @@ const Transcript = ({ analysisInfo }) => {
           <Button bg="#C2C693" onClick={() => setButtonType(2)}>
             Transcript
           </Button>
+          <Button bg="#C2C693" onClick={() => setButtonType(3)}>
+            Emotional analysis
+          </Button>
           <SearchFilter
             originalList={originalResultData}
             setFilteredList={setFilterResultData}
-          />
-          <InputComponent
-            value={email}
-            placeholder={"Enter email to send copy..."}
-            setValue={setEmail}
-            handlerButton={handleEmailSend}
-            buttonText={"Send"}
-            handlerInput={handleEmailInput}
-            showButton={true}
           />
         </HStack>
         {buttonType === 1 && (
@@ -102,6 +77,25 @@ const Transcript = ({ analysisInfo }) => {
                           </>
                         );
                       })}
+                    </HStack>
+                  </VStack>
+                  <br />
+                </>
+              );
+            })}
+            <br />
+          </Box>
+        )}
+        {buttonType === 3 && (
+          <Box border="1px" p="4" borderRadius={"md"}>
+            {analysisInfo["sentiment_analysis_results"].map((item) => {
+              //const list = item["sentiment"];
+              return (
+                <>
+                  <VStack>
+                    <Text>{item["sentiment"]}</Text>
+                    <HStack>
+                      <Text>{item["text"]}</Text>
                     </HStack>
                   </VStack>
                   <br />

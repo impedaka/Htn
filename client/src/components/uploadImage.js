@@ -86,45 +86,16 @@ const UploadImage = ({ setAnalysisInfo, analysisInfo }) => {
       </Text>
       <Box bg="#7DA5BE" borderRadius={"md"} p="8" minW="500px">
         <VStack spacing="25px">
-          {!loading && (
-            <>
-              <>
-                <Text color="white" fontSize="xl">
-                  Video Link
-                </Text>
-                <Input
-                  bg="white"
-                  type="text"
-                  value={link}
-                  onChange={(e) => {
-                    setLink(e.target.value);
-                  }}
-                />
-              </>
-              {!link && (
-                <Box>
-                  <input
-                    id="file-upload"
-                    type="file"
-                    accept=".mp4"
-                    onChange={(e) => handleFileUpload(e)}
-                  />
-                </Box>
-              )}
-            </>
-          )}
-          {loading && (
-            <Box>
-              <Text color="white">{loadingMessage}</Text>
-            </Box>
-          )}
+          <Text color="white" fontSize="xl">
+            Transcribe Audio
+          </Text>
         </VStack>
       </Box>
-      {!loading && (
-        <Button bg="#C2C693" onClick={handleYoutubeLink}>
-          Submit
-        </Button>
-      )}
+
+      <Button bg="#C2C693" onClick={handleYoutubeLink}>
+        Submit
+      </Button>
+
       {analysisInfo && <div></div>}
     </>
   );

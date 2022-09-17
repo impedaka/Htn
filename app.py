@@ -45,6 +45,7 @@ def fileUpload():
     return {'message': f'Content/{filename}'}
 @app.route('/upload/youtube', methods = ['POST'])
 def ytMp3():
+    '''
     link = request.json['link']
     yt = YouTube(link)
     video= yt.streams.first()
@@ -57,12 +58,13 @@ def ytMp3():
 
     video = VideoFileClip(os.path.join(new_file))
     video.audio.write_audiofile(os.path.join(f'Content/attachment.mp3'))
-    return {'message' :'Content/attachment.mp3'}
+    '''
+    return {'message' :'Content/test.mp3'}
 
 @app.route('/assemblyAI', methods = ['POST'])
 def assemblyAI():
     filename = "Content/test.mp3"
-    print('filename:', "Content/test.mp3")
+    print('filename:',filename)
     print(request.json)
     headers = {
     "authorization": os.getenv("ASSEMBLY_AI_KEY"),
