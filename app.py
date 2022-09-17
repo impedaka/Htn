@@ -61,8 +61,8 @@ def ytMp3():
 
 @app.route('/assemblyAI', methods = ['POST'])
 def assemblyAI():
-    filename = request.json['filename']
-    print('filename:',filename)
+    filename = "Content/test.mp3"
+    print('filename:', "Content/test.mp3")
     print(request.json)
     headers = {
     "authorization": os.getenv("ASSEMBLY_AI_KEY"),
