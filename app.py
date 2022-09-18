@@ -12,8 +12,8 @@ from time import sleep
 from pytube import YouTube
 import os
 from moviepy.editor import *
-from sendgrid import SendGridAPIClient
-from sendgrid.helpers.mail import *
+# from sendgrid import SendGridAPIClient
+# from sendgrid.helpers.mail import *
 
 
 logging.basicConfig(level=logging.INFO)
@@ -45,21 +45,19 @@ def fileUpload():
     return {'message': f'Content/{filename}'}
 @app.route('/upload/youtube', methods = ['POST'])
 def ytMp3():
-    '''
     link = request.json['link']
     yt = YouTube(link)
-    video= yt.streams.first()
+    video = yt.streams.first()
     # download the file
     out_file = video.download(output_path='./Content')
-    
+
     # save the file
     new_file = 'Content/attachment.mp4'
     os.rename(out_file, new_file)
 
     video = VideoFileClip(os.path.join(new_file))
     video.audio.write_audiofile(os.path.join(f'Content/attachment.mp3'))
-    '''
-    return {'message' :'Content/test.mp3'}
+    return {'message': 'Content/attachment.mp3'}
 
 @app.route('/assemblyAI', methods = ['POST'])
 def assemblyAI():
@@ -67,8 +65,8 @@ def assemblyAI():
     print('filename:',filename)
     print(request.json)
     headers = {
-    "authorization": os.getenv("ASSEMBLY_AI_KEY"),
-    "content-type": "application/json"
+        "authorization": "0916af326efb4d7e9dd78653dba744e4",
+        "content-type": "application/json"
     }
     transcript_endpoint = "https://api.assemblyai.com/v2/transcript"
     upload_endpoint = 'https://api.assemblyai.com/v2/upload'
